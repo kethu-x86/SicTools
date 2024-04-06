@@ -605,6 +605,24 @@ public class LinkerTest {
         }
     }
 
+    @Test
+    public void testModification3() {
+        System.out.println("running testModification3");
+        List<String> inputs = new ArrayList<>();
+        inputs.add("tests/linker/mod3/mod3.obj");
+        Options options = new Options();
+        options.setOutputName("out.obj");
+        options.setOutputPath("tests/linker/mod3/out.obj");
+
+        Linker test = new Linker(inputs, options);
+        try {
+            Section out = test.link();
+
+        } catch (LinkerError le) {
+            Assert.fail("LinkerError: " + le.getMessage());
+        }
+    }
+
 
     // private functions for testing
     // -----------------------------------------------------------------
