@@ -33,13 +33,18 @@ public class WriteText extends WriteVisitor {
         if (recordBytes == 0) return;
         String codeString = buf.toString();
         while (recordBytes > 0) {
-            int length = codeString.length() <= 60 ? codeString.length() / 2 : 30;
-            w("T%s%06X%s%02X", space, textAddr, space, length);
-            w(codeString.substring(0, length * 2));
-            codeString = codeString.substring(length * 2);
+            int i = 0;
+            int nibbles = 0;
+            for (i = 0; i < codeString.length() && nibbles < 60; i++)
+                if (codeString.charAt(i) != ' ')
+                    nibbles++;
+            int bytes = nibbles / 2;
+            w("T%s%06X%s%02X", space, textAddr, space, bytes);
+            w(codeString.substring(0, i));
+            codeString = codeString.substring(i);
             w("\n");
-            textAddr += length;
-            recordBytes -= length;
+            textAddr += bytes;
+            recordBytes -= bytes;
         }
         buf = new StringBuilder();
         recordBytes = 0;
