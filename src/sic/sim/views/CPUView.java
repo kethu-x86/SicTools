@@ -146,7 +146,11 @@ public class CPUView {
             regFF.setForeground(colorChange);
             regF.setText(str);
             regFF.setText(Double.toString(val));
-            //regF.setToolTipText("<html>sign, mantis, exp<html>"); TODO: sign, mantis, exp
+            long bits = Double.doubleToLongBits(val);
+            int sign = (bits & 0x8000000000000000L) == 0 ? 1 : -1;
+            int exponent = (int)((bits >> 52) & 0x7FF);
+            long mantissa = bits & 0xFFFFFFFFFFFFFL;
+            regF.setToolTipText(String.format("<html>Sign: %d<br>Exponent: %d<br>Mantissa: %d<html>", sign, exponent, mantissa));
         }
     }
 

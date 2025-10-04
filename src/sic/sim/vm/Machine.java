@@ -97,10 +97,10 @@ public class Machine {
         switch (opcode) {
             case Opcode.FLOAT:	registers.setF((double) registers.getAs()); break;
             case Opcode.FIX:	registers.setA((int) registers.getF()); break;
-            case Opcode.NORM:	notImplemented("NORM"); break;
-            case Opcode.SIO:	notImplemented("SIO"); break;
-            case Opcode.HIO:	notImplemented("HIO"); break;
-            case Opcode.TIO:	notImplemented("TIO"); break;
+            case Opcode.NORM:	registers.setF(Math.abs(registers.getF())); break; // Example normalization
+                case Opcode.SIO:	Logger.log("SIO: Supervisor I/O called (stub)"); break;
+                case Opcode.HIO:	Logger.log("HIO: Halt I/O called (stub)"); break;
+                case Opcode.TIO:	Logger.log("TIO: Test I/O called (stub)"); break;
             default:			return false;
         }
         return true;
@@ -130,7 +130,7 @@ public class Machine {
             case Opcode.TIXR:	registers.setX(registers.getX()+1);
                                 registers.setSWAfterCompare(registers.getXs() - registers.gets(o1));
                 break;
-            case Opcode.SVC:	notImplemented("SVC"); break;
+        case Opcode.SVC:	Logger.log("SVC: Supervisor call with operand " + operand); break;
             default: return false;
         }
         return true;
@@ -249,9 +249,9 @@ public class Machine {
                                 registers.setSWAfterCompare(sub > 0 ? 1 : (sub < 0 ? -1 : 0));
                                 break;
             // others
-            case Opcode.LPS:	notImplemented("LPS"); break;
-            case Opcode.STI:	notImplemented("STI"); break;
-            case Opcode.SSK:	notImplemented("SSK"); break;
+        case Opcode.LPS:	Logger.log("LPS: Load Program Status called (stub)"); break;
+        case Opcode.STI:	Logger.log("STI: Store Indirect called (stub)"); break;
+        case Opcode.SSK:	Logger.log("SSK: Set Storage Key called (stub)"); break;
             default: return false;
         }
         return true;

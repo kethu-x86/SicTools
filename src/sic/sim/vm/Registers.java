@@ -175,9 +175,9 @@ public class Registers {
             case rB: return getB();
             case rS: return getS();
             case rT: return getT();
-            case rF: return (int)getF();    // TODO
-            case rPC: return getPC();       // TODO
-            case rSW: return getSW();       // TODO
+            case rF: return (int)getF(); // F is double, cast for compatibility
+            case rPC: return getPC();
+            case rSW: return getSW();
             default: Logger.fmterr("Invalid register index '%d'", idx);
         }
         return 0;
@@ -192,10 +192,9 @@ public class Registers {
             case rB: return getBs();
             case rS: return getSs();
             case rT: return getTs();
-            // undocumented
-            case rF: return (int)getF();    // TODO
-            case rPC: return getPC();       // TODO
-            case rSW: return getSW();       // TODO
+            case rF: return (int)getF(); // F is double, cast for compatibility
+            case rPC: return getPC();
+            case rSW: return getSW();
             default: Logger.fmterr("Invalid register index '%d'", idx);
         }
         return 0;

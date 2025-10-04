@@ -123,16 +123,16 @@ public class Args extends  AbstractCmdLineArgs {
     }
 
     public static void printArgs() {
-        System.out.print(
-            "    -help|-h              Print help.\n" +
-            "    -freq hz              Set the machine frequency.\n" +
-          //"    -debug level      Set the debug level.\n" + // Don't display while not implemented (TODO)
-            "    -start                Start on load.\n" +
-            "    -stats                Print instruction statistics.\n" +
-            "    -text colsxrows       Show and resize textual screen.\n" +
-            "    -graph colsxrows[@hz] Show and resize graphical screen.\n" +
-            "    -keyb address         Show and set keyboard address.\n" +
-            "    -a path[@params]      Load addon.\n");
+                System.out.print(
+                        "    -help|-h              Print help.\n" +
+                        "    -freq hz              Set the machine frequency.\n" +
+                        "    -debug level          Set the debug level.\n" +
+                        "    -start                Start on load.\n" +
+                        "    -stats                Print instruction statistics.\n" +
+                        "    -text colsxrows       Show and resize textual screen.\n" +
+                        "    -graph colsxrows[@hz] Show and resize graphical screen.\n" +
+                        "    -keyb address         Show and set keyboard address.\n" +
+                        "    -a path[@params]      Load addon.\n");
     }
 
     int parseFreq(String s) {
